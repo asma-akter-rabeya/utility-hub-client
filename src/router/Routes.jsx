@@ -4,6 +4,8 @@ import Register from "../auth/Register";
 import Login from "../auth/Login";
 import PageLayout from "../layouts/PageLayout";
 import RecentBills from "../components/RecentBills";
+import PrivateRoute from "./PrivateRoutes";
+import BillDetails from "../pages/BillDetails";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +32,12 @@ export const router = createBrowserRouter([
       {
         path: '/page/login',
         Component: Login,
+      },
+      {
+        path: '/page/bills/:id',
+        element: 
+          <BillDetails></BillDetails>
+        
       }
 
     ],

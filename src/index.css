@@ -1,0 +1,21 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+.bg-gradient-400 {
+    @apply bg-linear-to-br from-indigo-200 via-purple-200 to-pink-200;
+  }
+.bg-gradient-600 {
+    @apply bg-linear-to-tr from-indigo-600 via-purple-600 to-pink-600;
+  }
+
+  /* Custom button override */
+.btn-primary {
+  @apply bg-linear-to-r from-[#632EE3] to-[#9F62F2] border-none text-white font-semibold px-5 py-2 rounded-lg shadow-md transition duration-300 ease-in-out;
+}
+.btn-primary:hover {
+  @apply from-[#5321D1] to-[#8B4BEA] scale-105 shadow-lg;
+}
+
+.text-primary {
+  @apply bg-linear-to-r from-[#632EE3] to-[#9F62F2] text-transparent bg-clip-text border-none;
+}

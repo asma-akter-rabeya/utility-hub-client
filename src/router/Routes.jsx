@@ -3,14 +3,17 @@ import MainLayout from "../layouts/MainLayout";
 import Register from "../auth/Register";
 import Login from "../auth/Login";
 import PageLayout from "../layouts/PageLayout";
+import RecentBills from "../components/RecentBills";
 
 export const router = createBrowserRouter([
   {
-    path:'/',
+    path: '/',
     Component: MainLayout,
     children: [
       {
-        
+        path: '/',
+        Component: RecentBills,
+        loader: () => fetch('http://localhost:3000/latest-bills'),
       }
     ]
 
@@ -28,7 +31,7 @@ export const router = createBrowserRouter([
         path: '/page/login',
         Component: Login,
       }
-      
+
     ],
   },
 ]);

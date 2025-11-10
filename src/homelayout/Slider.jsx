@@ -16,12 +16,10 @@ import slide5 from '../assets/Slide-5.jpg';
 const allSlide = [slide1, slide2, slide3, slide4, slide5,];
 
 const Slider = () => {
-    const handleType = (count) => {
-        console.log(count);
+    const handleType = () => {
     };
 
     const handleDone = () => {
-        console.log('Done after 5 loops!');
     };
 
     return (

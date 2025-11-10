@@ -6,6 +6,7 @@ import PageLayout from "../layouts/PageLayout";
 import RecentBills from "../components/RecentBills";
 import PrivateRoute from "./PrivateRoutes";
 import BillDetails from "../pages/BillDetails";
+import AllBills from "../components/AllBills";
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +40,11 @@ export const router = createBrowserRouter([
           <BillDetails></BillDetails>
         </PrivateRoute>
 
+      },
+      {
+        path: '/page/bills',
+        Component: AllBills,
+        loader: () => fetch('http://localhost:3000/bills'),
       }
 
     ],

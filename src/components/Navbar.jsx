@@ -32,12 +32,12 @@ const Navbar = () => {
     const links = (
         <>
             <li><NavLink to="/" className='btn-primary'>Home</NavLink></li>
-            <li><NavLink to="/bills" className='btn-primary'>Bills</NavLink></li>
+            <li><NavLink to="/page/bills" className='btn-primary'>Bills</NavLink></li>
             {user && (
                 <>
-                    <li><NavLink to="/myPayBills" className='btn-primary'>My PayBills</NavLink></li>
+                    <li><NavLink to="/page/myPayBills" className='btn-primary'>My PayBills</NavLink></li>
                     <li>
-                        <NavLink to="/profile">
+                        <NavLink to="/page/profile">
                             <div className="w-9 h-9 rounded-full overflow-hidden ">
                                 <img
                                     alt="User avatar"

@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import HeroBanner from "../homelayout/HeroBanner";
 import Slider from "../homelayout/Slider";
 import Categories from "../homelayout/Categories";
+import WhyChooseUs from "../homelayout/WhyChooseUs";
 
 const MainLayout = () => {
   
@@ -15,10 +16,10 @@ const MainLayout = () => {
         <HeroBanner></HeroBanner>
         <Slider></Slider>
         <Categories></Categories>
-        {/* bg-gradient-400 */}
         <div className="py-4  min-h-screen">
           <Outlet />
         </div>
+        <WhyChooseUs></WhyChooseUs>
         <Footer/>
       </div>
 

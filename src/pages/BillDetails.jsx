@@ -68,7 +68,7 @@ const BillDetails = () => {
             billId: form.billId.value,
             email: form.email.value,
             amount: form.amount.value,
-            userName: form.name.value,
+            username: form.name.value,
             address: form.address.value,
             phone: form.phone.value,
             date: form.date.value,
@@ -208,7 +208,7 @@ const BillDetails = () => {
 
                                     <div>
                                         <label className="label text-sm font-medium text-gray-700">UserName</label>
-                                        <input type="text" name="location" className="input input-bordered w-full" placeholder="Enter location" required />
+                                        <input type="text" name="name" className="input input-bordered w-full" placeholder="Enter Your name" required />
                                     </div>
                                     {/* address */}
                                     <div>

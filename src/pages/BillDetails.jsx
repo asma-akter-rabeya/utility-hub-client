@@ -1,7 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { use, useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import useAxios from "../hook/useAxios";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
+import { AuthContext } from "../contexts/AuthContext";
+import Swal from "sweetalert2";
 
 const BillDetails = () => {
     const { id } = useParams();
@@ -10,6 +12,10 @@ const BillDetails = () => {
     const [bill, setBill] = useState(null);
     const [loading, setLoading] = useState(true);
     const bidModalRef = useRef(null);
+    const { user } = use(AuthContext);
+
+
+
 
 
     useEffect(() => {
@@ -41,16 +47,57 @@ const BillDetails = () => {
         );
     }
 
-    const { title, category, location, image, amount, description, email, date } =
+    const { title, category, location, image, amount, description, email, date, _id } =
         bill;
 
+    const billDate = new Date(date);
+    const currentDate = new Date();
+
+    const isCurrentMonthBill =
+        billDate.getMonth() === currentDate.getMonth() &&
+        billDate.getFullYear() === currentDate.getFullYear();
     const handlePayBillModalOpen = () => {
         bidModalRef.current.showModal();
     };
 
-    const handlePayBillSubmit = () => {
+    const handlePayBillSubmit = (e) => {
+        e.preventDefault();
 
-    }
+        const form = e.target;
+        const paidBill = {
+            billId: form.billId.value,
+            email: form.email.value,
+            amount: form.amount.value,
+            userName: form.name.value,
+            address: form.address.value,
+            phone: form.phone.value,
+            date: form.date.value,
+        };
+
+        fetch('http://localhost:3000/paidBills', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(paidBill)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log('after placing bill : ', data);
+                if (data.insertedId) {
+                    bidModalRef.current.close();
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your bill has been paid",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                }
+            })
+            .catch(err => console.error(err));
+    };
 
     return (
         <div className="max-w-5xl mx-auto mt-10 p-6 bg-white rounded-2xl shadow-lg">
@@ -120,11 +167,19 @@ const BillDetails = () => {
                     </div>
 
                     <div>
-                        <button
-                            onClick={handlePayBillModalOpen}
-                            className="btn-primary w-full py-2 rounded-lg">
-                            Pay Bill Now
-                        </button>
+                        <div>
+                            <button
+                                onClick={handlePayBillModalOpen}
+                                disabled={!isCurrentMonthBill}
+                                className={`w-full py-2 rounded-lg font-medium transition ${isCurrentMonthBill
+                                    ? "btn-primary cursor-pointer"
+                                    : "bg-gray-300 text-gray-600 cursor-not-allowed"
+                                    }`}
+                            >
+                                {isCurrentMonthBill ? "Pay Bill Now" : "You can only pay current month bills"}
+                            </button>
+                        </div>
+
 
                         <dialog ref={bidModalRef} className="modal modal-bottom sm:modal-middle">
                             <div className="modal-box">
@@ -133,47 +188,41 @@ const BillDetails = () => {
                                 </h3>
 
                                 <form onSubmit={handlePayBillSubmit} className="space-y-4">
+                                    {/* bill id */}
                                     <div>
-                                        <label className="label text-sm font-medium text-gray-700">Title</label>
-                                        <input type="text" name="title" className="input input-bordered w-full" placeholder="Enter bill title" required />
+                                        <label className="label text-sm font-medium text-gray-700">BillId</label>
+                                        <input type="text" name="billId" className="input input-bordered w-full" readOnly defaultValue={_id} />
                                     </div>
 
-                                    <div>
-                                        <label className="label text-sm font-medium text-gray-700">Category</label>
-                                        <select name="category" className="select select-bordered w-full" required>
-                                            <option disabled selected>Select Category</option>
-                                            <option value="Electricity">Electricity</option>
-                                            <option value="Water">Water</option>
-                                            <option value="Gas">Gas</option>
-                                            <option value="Internet">Internet</option>
-                                        </select>
-                                    </div>
-
+                                    {/* email */}
                                     <div>
                                         <label className="label text-sm font-medium text-gray-700">Email</label>
-                                        <input type="email" className="input input-bordered w-full" name="email" />
+                                        <input type="email" className="input input-bordered w-full" name="email" readOnly defaultValue={user?.email} />
                                     </div>
-
-                                    <div>
-                                        <label className="label text-sm font-medium text-gray-700">Location</label>
-                                        <input type="text" name="location" className="input input-bordered w-full" placeholder="Enter location" required />
-                                    </div>
-
-                                    <div>
-                                        <label className="label text-sm font-medium text-gray-700">Description</label>
-                                        <input type="text" name="description" className="input input-bordered w-full" placeholder="Enter Bill Description" required />
-                                    </div>
-
+                                    {/* amount */}
                                     <div>
                                         <label className="label text-sm font-medium text-gray-700">Amount</label>
-                                        <input type="number" name="amount" className="input input-bordered w-full" placeholder="Enter amount" required />
+                                        <input type="number" name="amount" className="input input-bordered w-full" readOnly defaultValue={amount} />
                                     </div>
+                                    {/* user name */}
 
                                     <div>
-                                        <label className="label text-sm font-medium text-gray-700">Image URL</label>
-                                        <input type="url" name="image" className="input input-bordered w-full" placeholder="Enter image link" />
+                                        <label className="label text-sm font-medium text-gray-700">UserName</label>
+                                        <input type="text" name="location" className="input input-bordered w-full" placeholder="Enter location" required />
+                                    </div>
+                                    {/* address */}
+                                    <div>
+                                        <label className="label text-sm font-medium text-gray-700">Address</label>
+                                        <input type="text" name="address" className="input input-bordered w-full" placeholder="Enter Address " required />
                                     </div>
 
+                                    {/* phone */}
+
+                                    <div>
+                                        <label className="label text-sm font-medium text-gray-700">Phone Number</label>
+                                        <input type="number" name="phone" className="input input-bordered w-full" placeholder="Enter image link" />
+                                    </div>
+                                    {/* date */}
                                     <div>
                                         <label className="label text-sm font-medium text-gray-700">Date</label>
                                         <input type="date" name="date" className="input input-bordered w-full" required />

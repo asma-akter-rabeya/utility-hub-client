@@ -74,7 +74,7 @@ const BillDetails = () => {
             date: form.date.value,
         };
 
-        fetch('http://localhost:3000/paidBills', {
+        fetch('http://localhost:3000/myBills', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -220,7 +220,7 @@ const BillDetails = () => {
 
                                     <div>
                                         <label className="label text-sm font-medium text-gray-700">Phone Number</label>
-                                        <input type="number" name="phone" className="input input-bordered w-full" placeholder="Enter image link" />
+                                        <input type="number" name="phone" className="input input-bordered w-full" placeholder="Enter phone number" />
                                     </div>
                                     {/* date */}
                                     <div>

@@ -9,6 +9,7 @@ import BillDetails from "../pages/BillDetails";
 import AllBills from "../components/AllBills";
 import MyPayBills from "../pages/MyPayBills";
 import ErrorPage from "../pages/ErrorPage";
+import MyProfile from "../pages/MyProfile";
 
 export const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ export const router = createBrowserRouter([
         loader: () => fetch('https://utility-bill-server-one.vercel.app/bills'),
         hydrateFallbackElement: <div className="text-center py-10 text-gray-600">Loading your page...</div>
 
+      },
+      {
+        path: '/page/profile',
+        Component: MyProfile,
       }
 
     ],

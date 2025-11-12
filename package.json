@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.17",
+    "animate.css": "^4.1.1",
     "firebase": "^12.5.0",
     "jspdf": "^2.5.2",
     "jspdf-autotable": "^3.8.4",

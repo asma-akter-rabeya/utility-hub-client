@@ -20,7 +20,7 @@ const BillDetails = () => {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:3000/bills/${id}`)
+            .get(`https://utility-bill-server-one.vercel.app/bills/${id}`)
             .then((res) => {
                 setBill(res.data);
                 setLoading(false);
@@ -74,7 +74,7 @@ const BillDetails = () => {
             date: form.date.value,
         };
 
-        fetch('http://localhost:3000/myBills', {
+        fetch('https://utility-bill-server-one.vercel.app/myBills', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

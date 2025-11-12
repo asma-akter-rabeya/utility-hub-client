@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router';
 import BillCard from './BillCard';
+import { AuthContext } from '../contexts/AuthContext';
 
 const RecentBills = () => {
     const recentBills = useLoaderData();
+
+    const { loading } = useContext(AuthContext);
+
+    if (loading)
+        return <div className="text-center py-10 text-gray-600">Loading  Recent Bills...</div>;
+
     return (
         <div className='w-11/12 mx-auto my-6'>
 

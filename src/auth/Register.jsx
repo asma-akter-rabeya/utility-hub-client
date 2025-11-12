@@ -8,7 +8,7 @@ import { AuthContext } from "../contexts/AuthContext";
 
 const Register = () => {
 
-    const { createUser, setUser, updateUser, /* loading , */ auth } = useContext(AuthContext)
+    const { createUser, setUser, updateUser, loading, auth } = useContext(AuthContext)
     const [nameError, setNameError] = useState("");
     const [show, setShow] = useState(false);
     const [passwordError, setPasswordError] = useState("");
@@ -18,9 +18,9 @@ const Register = () => {
     const googleProvider = new GoogleAuthProvider();
 
 
-    // if (loading) {
-    //     return <Loading page={"Sign up"}></Loading>
-    // }
+    if (loading)
+        return <div className="text-center py-10 text-gray-600">Loading  Registration Page...</div>;
+
 
     const handleSignup = (e) => {
         e.preventDefault();

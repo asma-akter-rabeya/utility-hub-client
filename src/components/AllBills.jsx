@@ -12,10 +12,12 @@ const AllBills = () => {
   const [allBills, setAllBills] = useState(initialBills || []);
   const [selectedCategory, setSelectedCategory] = useState("All");
 
+  const { loading } = useContext(AuthContext);
+
 
   // Fetch bills based on selected category
   useEffect(() => {
-    fetch(`http://localhost:3000/bills?category=${selectedCategory}`)
+    fetch(`https://utility-bill-server-one.vercel.app/bills?category=${selectedCategory}`)
       .then(res => res.json())
       .then(data => setAllBills(data))
       .catch(err => console.error("Error fetching bills:", err));
@@ -40,7 +42,7 @@ const AllBills = () => {
       amount: form.amount.value
     };
 
-    fetch('http://localhost:3000/bills', {
+    fetch('https://utility-bill-server-one.vercel.app/bills', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
@@ -64,6 +66,10 @@ const AllBills = () => {
       })
       .catch(err => console.error(err));
   };
+  
+  if (loading)
+    return <div className="text-center py-10 text-gray-600">Loading  All Bills...</div>;
+
 
   return (
     <div className="w-11/12 mx-auto mt-7">

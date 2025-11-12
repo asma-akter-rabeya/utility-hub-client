@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Link,  useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import toast from 'react-hot-toast';
 import { FaEye } from 'react-icons/fa';
 import { IoEyeOff } from 'react-icons/io5';
@@ -10,8 +10,8 @@ import { AuthContext } from '../contexts/AuthContext';
 
 
 const Login = () => {
-    const { signIn, setUser, auth , /* loading */} = useContext(AuthContext);
-   
+    const { signIn, setUser, auth, loading } = useContext(AuthContext);
+
     const [error, setError] = useState("");
     const [show, setShow] = useState(false);
     const emailRef = useRef(null);
@@ -21,9 +21,9 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-    // if (loading) {
-    //     return <Loading page={"Login"}></Loading>
-    // }
+    if (loading)
+        return <div className="text-center py-10 text-gray-600">Loading  Login Page ...</div>;
+
 
     const handleLogin = (e) => {
         e.preventDefault();

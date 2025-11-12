@@ -17,7 +17,7 @@ export const router = createBrowserRouter([
       {
         path: '/',
         Component: RecentBills,
-        loader: () => fetch('http://localhost:3000/latest-bills'),
+        loader: () => fetch('https://utility-bill-server-one.vercel.app/latest-bills'),
       }
     ]
 
@@ -44,7 +44,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/page/myPayBills',
-        loader: () => fetch('http://localhost:3000/myBills'),
+        loader: () => fetch('https://utility-bill-server-one.vercel.app/myBills'),
         element: <PrivateRoute>
           <MyPayBills></MyPayBills>
         </PrivateRoute>
@@ -53,7 +53,7 @@ export const router = createBrowserRouter([
       {
         path: '/page/bills',
         Component: AllBills,
-        loader: () => fetch('http://localhost:3000/bills'),
+        loader: () => fetch('https://utility-bill-server-one.vercel.app/bills'),
       }
 
     ],

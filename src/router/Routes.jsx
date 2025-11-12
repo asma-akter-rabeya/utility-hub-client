@@ -8,6 +8,7 @@ import PrivateRoute from "./PrivateRoutes";
 import BillDetails from "../pages/BillDetails";
 import AllBills from "../components/AllBills";
 import MyPayBills from "../pages/MyPayBills";
+import ErrorPage from "../pages/ErrorPage";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ export const router = createBrowserRouter([
         path: '/',
         Component: RecentBills,
         loader: () => fetch('https://utility-bill-server-one.vercel.app/latest-bills'),
+        hydrateFallbackElement: <div className="text-center py-10 text-gray-600">Loading your page...</div>
       }
     ]
 
@@ -45,6 +47,7 @@ export const router = createBrowserRouter([
       {
         path: '/page/myPayBills',
         loader: () => fetch('https://utility-bill-server-one.vercel.app/myBills'),
+        hydrateFallbackElement: <div className="text-center py-10 text-gray-600">Loading your page...</div>,
         element: <PrivateRoute>
           <MyPayBills></MyPayBills>
         </PrivateRoute>
@@ -54,8 +57,15 @@ export const router = createBrowserRouter([
         path: '/page/bills',
         Component: AllBills,
         loader: () => fetch('https://utility-bill-server-one.vercel.app/bills'),
+        hydrateFallbackElement: <div className="text-center py-10 text-gray-600">Loading your page...</div>
+
       }
 
     ],
   },
+  {
+    path: '*',
+    element: <ErrorPage />,
+  }
+
 ]);

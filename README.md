@@ -3,6 +3,11 @@
 A full-stack MERN application for managing and paying utility bills such as **electricity, gas, water, and internet**. Users can view bills, filter by category, manage personal payments, and download PDF reports.
 
 ---
+![Home Page](https://i.ibb.co.com/9H8D25XN/utility-home.jpg)
+![Bills Table](https://i.ibb.co.com/DPhqBrWB/bills.jpg)
+![Bill Sample](https://i.ibb.co.com/ZpyRx4jM/details.jpg)
+
+---
 
 ## 🚀 Features
 

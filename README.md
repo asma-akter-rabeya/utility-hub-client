@@ -44,6 +44,19 @@ Generate and download a detailed PDF report that includes:
 - Fully responsive UI
 
 ---
+## 🛠️ Technology Stack
+
+| Category        | Technologies Used |
+|-----------------|-------------------|
+| Frontend        | React.js, React Router, Tailwind CSS, DaisyUI |
+| Backend         | Node.js, Express.js |
+| Database        | MongoDB, MongoDB Atlas |
+| Authentication  | Firebase Authentication |
+| PDF Generation  | jsPDF, jspdf-autotable |
+| Icons & UI      | React Icons, SweetAlert2 |
+| Deployment      |  Netlify |
+
+---
 
 ## 🛢️ Database Structure (MongoDB)
 

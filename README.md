@@ -1,16 +1,63 @@
-# React + Vite
+# Utility Bill Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack MERN application for managing and paying utility bills such as **electricity, gas, water, and internet**. Users can view bills, filter by category, manage personal payments, and download PDF reports.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## React Compiler
+### 🔐 Authentication
+- User login & registration
+- Firebase authentication
+- Persistent login (React Context API)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 📄 Bill Management
+- View all bills
+- Filter bills by category
+- View latest 6 bills
+- Detailed bill pages
+- User-specific “My Bills” section
 
-## Expanding the ESLint configuration
+### 🧾 PDF Report
+Generate and download a detailed PDF report that includes:
+- User info  
+- Total bills paid  
+- Total amount paid  
+- Full table of bills  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+(Built using **jsPDF** + **jspdf-autotable**)
+
+### 🛠️ CRUD Operations
+- Add bills (admin/creator)
+- Update user’s bill info
+- Delete saved bills with confirmation
+- Fetch user-specific bills by email
+
+### 🎨 Frontend
+- React + Vite
+- Tailwind CSS + DaisyUI
+- Fully responsive UI
+
+---
+
+## 🛢️ Database Structure (MongoDB)
+
+### billsCollection example:
+```json
+{
+  "_id": "6911d3d3584dfcf261ae59ed",
+  "title": "Frequent Power Outage in Mirpur",
+  "category": "Electricity",
+  "email": "creator@gmail.com",
+  "location": "Mirpur-10, Dhaka",
+  "description": "Residents in Mirpur-10 are facing frequent outages...",
+  "image": "https://i.ibb.co.com/j9SwCHP2/data1.jpg",
+  "date": "2025-10-26",
+  "amount": 260
+}
+```
+---
+## 🌐 Live Website
+👉 [Click here to visit the live site](https://my-utility-hub.netlify.app/)
+
+
